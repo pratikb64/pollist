@@ -1,0 +1,53 @@
+{
+  "name": "pollist",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "clean": "rimraf \"{.next,dist,build,out}\"",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "push-schema": "prisma db push",
+    "vercel-build": "prisma generate && prisma migrate deploy && next build"
+  },
+  "dependencies": {
+    "@headlessui/react": "^1.6.6",
+    "@heroicons/react": "^1.0.6",
+    "@hookstate/core": "^4.0.0-rc13",
+    "@prisma/client": "^4.1.1",
+    "@tailwindcss/forms": "^0.5.2",
+    "axios": "^0.27.2",
+    "babel-plugin-superjson-next": "^0.4.3",
+    "canvas-confetti": "^1.5.1",
+    "chart.js": "^3.8.2",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.3.3",
+    "next": "12.2.1",
+    "next-auth": "^4.9.0",
+    "nprogress": "^0.2.0",
+    "prettier-plugin-tailwindcss": "^0.1.12",
+    "react": "18.2.0",
+    "react-chartjs-2": "^4.3.1",
+    "react-dom": "18.2.0",
+    "react-hot-toast": "^2.2.0",
+    "rimraf": "^3.0.2",
+    "short-uuid": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/canvas-confetti": "^1.4.3",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/node": "18.0.3",
+    "@types/nprogress": "^0.2.0",
+    "@types/react": "18.0.15",
+    "@types/react-dom": "18.0.6",
+    "autoprefixer": "^10.4.7",
+    "eslint": "8.19.0",
+    "eslint-config-next": "12.2.1",
+    "eslint-config-prettier": "^8.5.0",
+    "postcss": "^8.4.14",
+    "prisma": "^4.1.1",
+    "tailwindcss": "^3.1.5",
+    "typescript": "4.7.4"
+  }
+}

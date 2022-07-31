@@ -1,0 +1,56 @@
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+model User {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  email     String   @unique
+  name      String
+  password  String
+
+  polls Poll[]
+}
+
+model Poll {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  question  String
+  user_id   String
+  active    Boolean
+  endAt     DateTime?
+  views     Int?      @default(0)
+
+  user         User         @relation(fields: [user_id], references: [id])
+  poll_options PollOption[]
+  poll_votes   PollVote[]
+}
+
+model PollOption {
+  id        String   @id @default(uuid())
+  text      String
+  poll_id   String
+  votes     Int?     @default(0)
+  createdAt DateTime @default(now())
+
+  poll       Poll       @relation(fields: [poll_id], references: [id])
+  poll_votes PollVote[]
+}
+
+model PollVote {
+  id             String   @id @default(uuid())
+  poll_id        String
+  voter          String
+  poll_option_id String
+  createdAt      DateTime @default(now())
+
+  poll   Poll       @relation(fields: [poll_id], references: [id])
+  option PollOption @relation(fields: [poll_option_id], references: [id])
+}
